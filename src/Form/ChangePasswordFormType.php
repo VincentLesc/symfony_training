@@ -28,12 +28,11 @@ class ChangePasswordFormType extends AbstractType
                 'first_options' => [
                     'constraints' => [
                         new NotBlank([
-                            'message' => 'Please enter a password',
+                            'message' => $this->translator->trans('reset_password.email_form.blank_message'),
                         ]),
                         new Length([
                             'min' => 6,
-                            'minMessage' => 'Your password should be at least {{ limit }} characters',
-                            // max length allowed by Symfony for security reasons
+                            'minMessage' => $this->translator->trans('reset_password.password_form.password_lenght', ['%limit%' => 6]),
                             'max' => 4096,
                         ]),
                     ],
@@ -48,7 +47,7 @@ class ChangePasswordFormType extends AbstractType
                         'class' => 'form-control mb-2'
                     ],
                 ],
-                'invalid_message' => 'The password fields must match.',
+                'invalid_message' => $this->translator->trans('reset_password.password_form.password_not_same'),
                 // Instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,

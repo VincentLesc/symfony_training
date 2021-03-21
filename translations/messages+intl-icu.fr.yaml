@@ -6,5 +6,12 @@ reset_password.password_form.submit_cta: Enregistrer
 reset_password.password_form.title: 'Nouveau mot de passe'
 reset_password.password_form.password_input_label: 'Nouveau Mot de passe'
 reset_password.password_form.password_repeated_input_label: 'Confirmer mot de passe'
+reset_password.password_form.password_not_same: 'Les mots de passe doivent être identiques'
 reset_password.check_email.try_again_description: 'Si tu ne reçois pas d''email, vérifies tes spams ou <a href={path}>recommences</a>.'
-reset_password.check_email.description: Un email contenant un lien de réinitialisation a été envoyé. Ce lien expire dans {expire}.
+reset_password.check_email.description: 'Un email contenant un lien de réinitialisation a été envoyé. Ce lien expire dans {expire}.'
+reset_password.email.description: 'Pour mettre à jour ton mot de passe, visite le lien ci-dessous'
+reset_password.email.cta: 'Réinitialiser mon mot de passe'
+reset_password.email.description_alternative_link: '<p>Ou copiez-collez ce lien dans votre navigateur: </p> <a href="{url}">{url}</a> <p>Ce lien expire dans {expire}.</p> <p>A Bientôt!</p>'
+reset_password.email.subject: Réinitialisation de votre mot de passe
+reset_password.email.title: Hello !
+reset_password.password_form.password_lenght: 'Votre mot de passe doit contenir au moins { limit } caractères'
