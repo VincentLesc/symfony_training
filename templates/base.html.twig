@@ -75,7 +75,7 @@
 <div class="container" style="margin-top: 59px">
     {% for key, messages in app.flashes %}
         {% for message in messages %}
-            <div data-controller="alertify" data-type="key" data-message="{{ message }}"></div>
+            <div data-controller="alertify" data-type="{{ key }}" data-message="{{ message }}"></div>
         {% endfor %}
     {% endfor %}
 </div>

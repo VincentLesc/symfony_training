@@ -8,17 +8,29 @@ reset_password.password_form.password_input_label: 'New password'
 reset_password.password_form.password_repeated_input_label: 'Confirm Password'
 reset_password.password_form.password_not_same: 'Passwords must matched'
 reset_password.password_form.password_lenght: 'Your password should be at least { limit } characters'
-reset_password:
-  check_email:
-    try_again_description: If you don't receive an email please check your spam folder or <a href='%path%'>try again</a>.
-    description: An email has been sent that contains a link that you can click to reset your password.
-                  This link will expire in %expire%.
-  email:
-    description: 'To reset your password, please visit the following link<'
-    cta: 'Reinitialiser mon mot de passe'
-    description_alternative_link: '<p>Or copy/paste in your browser : </p>
-                                   <a href="{url}">{url}</a>
-                                   <p>This link will expire in {expire}.</p>
-                                   <p>Cheers!</p>'
-    title: 'Hi !'
-    subject: 'Your reset password request'
+reset_password.check_email.try_again_description: 'If you don''t receive an email please check your spam folder or <a href=''%path%''>try again</a>.'
+reset_password.check_email.description: 'An email has been sent that contains a link that you can click to reset your password. This link will expire in %expire%.'
+reset_password.email.description: 'To reset your password, please visit the following link<'
+reset_password.email.cta: 'Reinitialiser mon mot de passe'
+reset_password.email.description_alternative_link: '<p>Or copy/paste in your browser : </p> <a href="{url}">{url}</a> <p>This link will expire in {expire}.</p> <p>Cheers!</p>'
+reset_password.email.title: 'Hi !'
+reset_password.email.subject: 'Your reset password request'
+reset_password.request.error: 'Error during your request. Link token not found.'
+user_registration.email_confirm.mail_subject: 'Please confirm your email'
+user_registration.email_confirm.verified: 'Your email address has been verified.'
+user_registration.email_confirm.error: 'An error occured.'
+user_registration.registration_form.agreeTerms: 'You should agree to our terms.'
+user_registration.registration_form.enter_password: 'Please enter password'
+user_registration.registration_form.agreeTerms_label: 'Agree terms.'
+user_registration:
+  registration_form:
+    password: 'Password'
+    email: 'Email'
+    cta: 'Register'
+    to_login_cta: 'Login'
+    title: 'Register'
+  email_confirm:
+    mail_cta: 'Confirm you mail'
+    mail_description: 'Please confirm your email address by clicking the following link:'
+    mail_title: 'Hi! Please confirm your email!'
+    mail_about_link: 'This link will expire in {expire}.'

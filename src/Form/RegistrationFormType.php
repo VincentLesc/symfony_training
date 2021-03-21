@@ -12,22 +12,31 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationFormType extends AbstractType
 {
+    private $translator;
+
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('email', EmailType::class, [
                 'attr' => [
                     'class' => 'form-control mb-2'
-                ]
+                ],
+                'label' => $this->translator->trans('user_registration.registration_form.email'),
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                'label' => $this->translator->trans('user_registration.registration_form.agreeTerms_label'),
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => $this->translator->trans('user_registration.registration_form.agreeTerms'),
                     ]),
                 ],
             ])
@@ -35,13 +44,14 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
+                'label' => $this->translator->trans('user_registration.registration_form.password'),
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => $this->translator->trans('user_registration.registration_form.enter_password'),
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => $this->translator->trans('reset_password.password_form.password_lenght', ['%limit%' => 6]),
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
