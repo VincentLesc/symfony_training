@@ -7,7 +7,7 @@ export default class extends Controller {
         if (this.element.dataset.type === 'success') {
             alertify.success(this.element.dataset.message);
         } else {
-            alertify.success(this.element.dataset.message);
+            alertify.error(this.element.dataset.message);
         }
     }
 }

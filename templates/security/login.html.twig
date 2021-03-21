@@ -12,17 +12,17 @@
 
                 {% if app.user %}
                     <div class="mb-3">
-                        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                        {{ 'user_login.login_form.already_log' | trans({'%user%': app.user.username })}} <a href="{{ path('app_logout') }}">{{ 'user_login.login_form.log_out_cta' }}</a>
                     </div>
                 {% endif %}
 
-                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                <h1 class="h3 mb-3 font-weight-normal">{{ 'user_login.login_form.title' | trans }}</h1>
                 <div class="mb-2">
-                <label for="inputEmail">Email</label>
+                <label for="inputEmail">{{ 'user_login.login_form.email' | trans }}</label>
                 <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
                 </div>
                 <div class="mb-2">
-                <label for="inputPassword">Password</label>
+                <label for="inputPassword">{{ 'user_login.login_form.password' | trans }}</label>
                 <input type="password" name="password" id="inputPassword" class="form-control" required>
                 </div>
                 <input type="hidden" name="_csrf_token"
@@ -30,17 +30,17 @@
                 >
                 <div class="checkbox mb-2">
                     <label>
-                        <input type="checkbox" name="_remember_me"> Remember me
+                        <input type="checkbox" name="_remember_me"> {{ 'user_login.login_form.remember_me' | trans }}
                     </label>
                 </div>
                 <button class="btn btn-lg btn-primary mb-3" type="submit">
-                    Sign in
+                    {{ 'user_login.login_form.cta' | trans }}
                 </button>
                 <div class="mb-2">
-                    <a href="{{ path('app_forgot_password_request') }}">Reset password</a>
+                    <a href="{{ path('app_forgot_password_request') }}">{{ 'user_login.login_form.to_reset_password' | trans}}</a>
                 </div>
                 <div class="mb-2">
-                    <a href="{{ path('app_register') }}">Register</a>
+                    <a href="{{ path('app_register') }}">{{ 'user_login.login_form.to_register' | trans }}</a>
                 </div>
             </form>
         </div>

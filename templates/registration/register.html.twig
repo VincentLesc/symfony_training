@@ -1,27 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}{{ 'user_registration.registration_form.title' | trans }}{% endblock %}
 
 {% block body %}
 <main class="d-flex h-100 w-100">
     <div class="m-auto card p-3">
-    <h1>Register</h1>
+    <h1>{{ 'user_registration.registration_form.title' | trans }}</h1>
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
+        {{ form_row(registrationForm.plainPassword) }}
         <div class="checkbox mb-2">
             <label>
-                {{ form_widget(registrationForm.agreeTerms) }} Agree terms
+                {{ form_widget(registrationForm.agreeTerms) }} {{ 'user_registration.registration_form.agreeTerms_label' | trans }}
             </label>
         </div>
 
-        <button type="submit" class="btn btn-primary mb-3 w-100">Register</button>
+        <button type="submit" class="btn btn-primary mb-3 w-100">{{ 'user_registration.registration_form.cta' | trans }}</button>
 
         <div class="mb-2">
-            <a href="{{ path('app_login') }}">Login</a>
+            <a href="{{ path('app_login') }}">{{ 'user_registration.registration_form.to_login_cta' | trans }}</a>
         </div>
     {{ form_end(registrationForm) }}
     </div>

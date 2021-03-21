@@ -1,9 +1,10 @@
 {% extends 'mail/base.html.twig' %}
+
 {% block body %}
-<h1>Hi! Please confirm your email!</h1>
+<h1>{{ 'user_registration.email_confirm.mail_title' | trans }}</h1>
 
 <p>
-    Please confirm your email address by clicking the following link: <br><br>
+    {{ 'user_registration.email_confirm.mail_description' | trans}} <br><br>
     <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
         <tbody>
         <tr>
@@ -12,7 +13,7 @@
                     <tbody>
                     <tr>
                         <td>
-                            <a href="{{ signedUrl|raw }}">Confirm my Email</a>.
+                            <a href="{{ signedUrl|raw }}">{{ 'user_registration.email_confirm.mail_cta' | trans }}</a>.
                         </td>
                     </tr>
                     </tbody>
@@ -21,7 +22,7 @@
         </tr>
         </tbody>
     </table>
-    This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+    {{ 'user_registration.email_confirm.mail_about_link' | trans({'%expire%': expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle')}) }}
 </p>
 
 <p>
