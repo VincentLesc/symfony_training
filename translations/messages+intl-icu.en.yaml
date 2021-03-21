@@ -22,15 +22,21 @@ user_registration.email_confirm.error: 'An error occured.'
 user_registration.registration_form.agreeTerms: 'You should agree to our terms.'
 user_registration.registration_form.enter_password: 'Please enter password'
 user_registration.registration_form.agreeTerms_label: 'Agree terms.'
-user_registration:
-  registration_form:
-    password: 'Password'
-    email: 'Email'
-    cta: 'Register'
-    to_login_cta: 'Login'
-    title: 'Register'
-  email_confirm:
-    mail_cta: 'Confirm you mail'
-    mail_description: 'Please confirm your email address by clicking the following link:'
-    mail_title: 'Hi! Please confirm your email!'
-    mail_about_link: 'This link will expire in {expire}.'
+user_registration.registration_form.password: Password
+user_registration.registration_form.email: Email
+user_registration.registration_form.cta: Register
+user_registration.registration_form.to_login_cta: Login
+user_registration.registration_form.title: Register
+user_registration.email_confirm.mail_cta: 'Confirm you mail'
+user_registration.email_confirm.mail_description: 'Please confirm your email address by clicking the following link:'
+user_registration.email_confirm.mail_title: 'Hi! Please confirm your email!'
+user_registration.email_confirm.mail_about_link: 'This link will expire in {expire}.'
+user_login.login_form.already_log: 'You are logged in as {user},'
+user_login.login_form.title: 'Please log in !'
+user_login.login_form.email: Email
+user_login.login_form.password: Password
+user_login.login_form.remember_me: 'Remember me'
+user_login.login_form.cta: 'Log in'
+user_login.login_form.to_reset_password: 'Reset password'
+user_login.login_form.to_register: 'Register !'
+user_login.success.logged: 'Hi ! We are happy to see you back !'

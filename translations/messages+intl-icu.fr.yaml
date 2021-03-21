@@ -27,7 +27,16 @@ user_registration.registration_form.password: 'Mot de passe'
 user_registration.registration_form.cta: 'S''inscrire'
 user_registration.registration_form.to_login_cta: 'Se connecter'
 user_registration.registration_form.title: Inscription
-user_registration.email_confirm.mail_title: Bienvenue ! Confirmez votre compte
-user_registration.email_confirm.mail_description: Confirmez votre compte en cliquant sur le lien ci-dessous
-user_registration.email_confirm.mail_cta: Confirmez votre compte
+user_registration.email_confirm.mail_title: 'Bienvenue ! Confirmez votre compte'
+user_registration.email_confirm.mail_description: 'Confirmez votre compte en cliquant sur le lien ci-dessous'
+user_registration.email_confirm.mail_cta: 'Confirmez votre compte'
 user_registration.email_confirm.mail_about_link: 'Ce lien expire dans {expire}.'
+user_login.login_form.already_log: 'Vous êtes déjà connecté avec le compte : {user},'
+user_login.login_form.title: Connexion
+user_login.login_form.email: Email
+user_login.login_form.password: 'Mot de passe'
+user_login.login_form.remember_me: 'Se souvenir de moi'
+user_login.login_form.cta: Connexion
+user_login.login_form.to_reset_password: 'Réinitialisation du mot de passe.'
+user_login.login_form.to_register: 'Rejoins-nous !'
+user_login.success.logged: 'Hello! Content de te revoir !'
