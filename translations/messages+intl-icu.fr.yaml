@@ -1,5 +1,10 @@
-reset_password:
-  email_form:
-    title: Réinitialisation mot de passe
-    description: Saisis ton nom de profil ou ton adresse de courriel et nous t'enverrons un lien pour réinitialiser ton mot de passe.
-    submit_cta: 'Envoyer'
+reset_password.email_form.title: 'Réinitialisation mot de passe'
+reset_password.email_form.description: 'Saisis ton nom de profil ou ton adresse de courriel et nous t''enverrons un lien pour réinitialiser ton mot de passe.'
+reset_password.email_form.submit_cta: Envoyer
+reset_password.email_form.blank_message: 'Indiquez votre adresse mail'
+reset_password.password_form.submit_cta: Enregistrer
+reset_password.password_form.title: 'Nouveau mot de passe'
+reset_password.password_form.password_input_label: 'Nouveau Mot de passe'
+reset_password.password_form.password_repeated_input_label: 'Confirmer mot de passe'
+reset_password.check_email.try_again_description: 'Si tu ne reçois pas d''email, vérifies tes spams ou <a href={path}>recommences</a>.'
+reset_password.check_email.description: Un email contenant un lien de réinitialisation a été envoyé. Ce lien expire dans {expire}.
