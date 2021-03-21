@@ -40,3 +40,9 @@ user_login.login_form.cta: 'Log in'
 user_login.login_form.to_reset_password: 'Reset password'
 user_login.login_form.to_register: 'Register !'
 user_login.success.logged: 'Hi ! We are happy to see you back !'
+app_name: Application name
+app_logout: Logout
+app_login: Login
+user_registration:
+  email_confirm:
+    send: 'Confirm your email address! An email has just been sent to you.'

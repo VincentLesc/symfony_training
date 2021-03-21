@@ -22,6 +22,5 @@
         </tr>
         </tbody>
     </table>
-
     {{ 'reset_password.email.description_alternative_link' | trans({'%expire%': resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') , '%url%': url('app_reset_password', {token: resetToken.token}) }) | raw}}
 {% endblock %}

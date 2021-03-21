@@ -5,7 +5,7 @@
 {% block body %}
     <main class="d-flex h-100 w-100">
         <div class="m-auto">
-            <form method="post" class="card p-3">
+            <form method="post" class="card p-3 bg-dark shadow text-light">
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
