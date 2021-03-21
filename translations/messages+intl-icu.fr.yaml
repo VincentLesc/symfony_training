@@ -1,0 +1,46 @@
+reset_password.email_form.title: 'Réinitialisation mot de passe'
+reset_password.email_form.description: 'Saisis ton nom de profil ou ton adresse de courriel et nous t''enverrons un lien pour réinitialiser ton mot de passe.'
+reset_password.email_form.submit_cta: Envoyer
+reset_password.email_form.blank_message: 'Indiquez votre adresse mail'
+reset_password.password_form.submit_cta: Enregistrer
+reset_password.password_form.title: 'Nouveau mot de passe'
+reset_password.password_form.password_input_label: 'Nouveau Mot de passe'
+reset_password.password_form.password_repeated_input_label: 'Confirmer mot de passe'
+reset_password.password_form.password_not_same: 'Les mots de passe doivent être identiques'
+reset_password.password_form.password_lenght: 'Votre mot de passe doit contenir au moins { limit } caractères'
+reset_password.check_email.try_again_description: 'Si tu ne reçois pas d''email, vérifies tes spams ou <a href={path}>recommences</a>.'
+reset_password.check_email.description: 'Un email contenant un lien de réinitialisation a été envoyé. Ce lien expire dans {expire}.'
+reset_password.email.description: 'Pour mettre à jour ton mot de passe, visite le lien ci-dessous'
+reset_password.email.cta: 'Réinitialiser mon mot de passe'
+reset_password.email.description_alternative_link: '<p>Ou copiez-collez ce lien dans votre navigateur: </p> <a href="{url}">{url}</a> <p>Ce lien expire dans {expire}.</p> <p>A Bientôt!</p>'
+reset_password.email.subject: 'Réinitialisation de votre mot de passe'
+reset_password.email.title: 'Hello !'
+reset_password.request.error: 'Une erreur est survenue. Le lien est expiré ou n''est pas valide.'
+user_registration.registration_form.agreeTerms: 'Vous devez accepter les conditions d''utilisation.'
+user_registration.registration_form.agreeTerms_label: 'J''accepte les conditions d''utilisation.'
+user_registration.registration_form.enter_password: 'Renseignez un mot de passe.'
+user_registration.email_confirm.mail_subject: 'Confirmez votre mail'
+user_registration.email_confirm.verified: 'Votre adresse mail a été vérifiée.'
+user_registration.email_confirm.error: 'Une erreur est survenue.'
+user_registration.registration_form.email: Email
+user_registration.registration_form.password: 'Mot de passe'
+user_registration.registration_form.cta: 'S''inscrire'
+user_registration.registration_form.to_login_cta: 'Se connecter'
+user_registration.registration_form.title: Inscription
+user_registration.email_confirm.mail_title: 'Bienvenue ! Confirmez votre compte'
+user_registration.email_confirm.mail_description: 'Confirmez votre compte en cliquant sur le lien ci-dessous'
+user_registration.email_confirm.mail_cta: 'Confirmez votre compte'
+user_registration.email_confirm.mail_about_link: 'Ce lien expire dans {expire}.'
+user_login.login_form.already_log: 'Vous êtes déjà connecté avec le compte : {user},'
+user_login.login_form.title: Connexion
+user_login.login_form.email: Email
+user_login.login_form.password: 'Mot de passe'
+user_login.login_form.remember_me: 'Se souvenir de moi'
+user_login.login_form.cta: Connexion
+user_login.login_form.to_reset_password: 'Réinitialisation du mot de passe.'
+user_login.login_form.to_register: 'Rejoins-nous !'
+user_login.success.logged: 'Hello! Content de te revoir !'
+app_name: 'Mon Application'
+app_logout: Déconnexion
+app_login: Connexion
+user_registration.email_confirm.send: Confirmez votre adresse mail, en cliquant sur le lien contenu dans le mail de bienvenue.

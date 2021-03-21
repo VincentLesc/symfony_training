@@ -1,0 +1,48 @@
+reset_password.email_form.title: 'Reset password'
+reset_password.email_form.description: 'Enter your email address and we we will send you a link to reset your password.'
+reset_password.email_form.submit_cta: 'Reset password'
+reset_password.email_form.blank_message: 'Please enter your email'
+reset_password.password_form.submit_cta: 'Record new password'
+reset_password.password_form.title: 'New password'
+reset_password.password_form.password_input_label: 'New password'
+reset_password.password_form.password_repeated_input_label: 'Confirm Password'
+reset_password.password_form.password_not_same: 'Passwords must matched'
+reset_password.password_form.password_lenght: 'Your password should be at least { limit } characters'
+reset_password.check_email.try_again_description: 'If you don''t receive an email please check your spam folder or <a href=''%path%''>try again</a>.'
+reset_password.check_email.description: 'An email has been sent that contains a link that you can click to reset your password. This link will expire in %expire%.'
+reset_password.email.description: 'To reset your password, please visit the following link<'
+reset_password.email.cta: 'Reinitialiser mon mot de passe'
+reset_password.email.description_alternative_link: '<p>Or copy/paste in your browser : </p> <a href="{url}">{url}</a> <p>This link will expire in {expire}.</p> <p>Cheers!</p>'
+reset_password.email.title: 'Hi !'
+reset_password.email.subject: 'Your reset password request'
+reset_password.request.error: 'Error during your request. Link token not found.'
+user_registration.email_confirm.mail_subject: 'Please confirm your email'
+user_registration.email_confirm.verified: 'Your email address has been verified.'
+user_registration.email_confirm.error: 'An error occured.'
+user_registration.registration_form.agreeTerms: 'You should agree to our terms.'
+user_registration.registration_form.enter_password: 'Please enter password'
+user_registration.registration_form.agreeTerms_label: 'Agree terms.'
+user_registration.registration_form.password: Password
+user_registration.registration_form.email: Email
+user_registration.registration_form.cta: Register
+user_registration.registration_form.to_login_cta: Login
+user_registration.registration_form.title: Register
+user_registration.email_confirm.mail_cta: 'Confirm you mail'
+user_registration.email_confirm.mail_description: 'Please confirm your email address by clicking the following link:'
+user_registration.email_confirm.mail_title: 'Hi! Please confirm your email!'
+user_registration.email_confirm.mail_about_link: 'This link will expire in {expire}.'
+user_login.login_form.already_log: 'You are logged in as {user},'
+user_login.login_form.title: 'Please log in !'
+user_login.login_form.email: Email
+user_login.login_form.password: Password
+user_login.login_form.remember_me: 'Remember me'
+user_login.login_form.cta: 'Log in'
+user_login.login_form.to_reset_password: 'Reset password'
+user_login.login_form.to_register: 'Register !'
+user_login.success.logged: 'Hi ! We are happy to see you back !'
+app_name: Application name
+app_logout: Logout
+app_login: Login
+user_registration:
+  email_confirm:
+    send: 'Confirm your email address! An email has just been sent to you.'

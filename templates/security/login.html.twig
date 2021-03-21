@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <main class="d-flex h-100 w-100">
+        <div class="m-auto">
+            <form method="post" class="card p-3 bg-dark shadow text-light">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        {{ 'user_login.login_form.already_log' | trans({'%user%': app.user.username })}} <a href="{{ path('app_logout') }}">{{ 'user_login.login_form.log_out_cta' }}</a>
+                    </div>
+                {% endif %}
+
+                <h1 class="h3 mb-3 font-weight-normal">{{ 'user_login.login_form.title' | trans }}</h1>
+                <div class="mb-2">
+                <label for="inputEmail">{{ 'user_login.login_form.email' | trans }}</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+                </div>
+                <div class="mb-2">
+                <label for="inputPassword">{{ 'user_login.login_form.password' | trans }}</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" required>
+                </div>
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
+                <div class="checkbox mb-2">
+                    <label>
+                        <input type="checkbox" name="_remember_me"> {{ 'user_login.login_form.remember_me' | trans }}
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary mb-3" type="submit">
+                    {{ 'user_login.login_form.cta' | trans }}
+                </button>
+                <div class="mb-2">
+                    <a href="{{ path('app_forgot_password_request') }}">{{ 'user_login.login_form.to_reset_password' | trans}}</a>
+                </div>
+                <div class="mb-2">
+                    <a href="{{ path('app_register') }}">{{ 'user_login.login_form.to_register' | trans }}</a>
+                </div>
+            </form>
+        </div>
+    </main>
+{% endblock %}

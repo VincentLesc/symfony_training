@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Password Reset Email Sent{% endblock %}
+
+{% block body %}
+<main class="d-flex h-100 w-100">
+    <div class="m-auto card p-3 bg-dark shadow">
+    <p>
+        {% set resetTokenExpire = resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') %}
+        {{ 'reset_password.check_email.description' | trans({'%expire%': resetTokenExpire}, 'messages+intl-icu')}}
+    </p>
+    <p>{{ 'reset_password.check_email.try_again_description' | trans({'%path%':  path('app_forgot_password_request') }) | raw}}</p>
+    </div>
+</main>
+{% endblock %}
