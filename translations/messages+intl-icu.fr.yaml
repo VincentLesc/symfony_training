@@ -40,3 +40,7 @@ user_login.login_form.cta: Connexion
 user_login.login_form.to_reset_password: 'Réinitialisation du mot de passe.'
 user_login.login_form.to_register: 'Rejoins-nous !'
 user_login.success.logged: 'Hello! Content de te revoir !'
+app_name: 'Mon Application'
+app_logout: Déconnexion
+app_login: Connexion
+user_registration.email_confirm.send: Confirmez votre adresse mail, en cliquant sur le lien contenu dans le mail de bienvenue.

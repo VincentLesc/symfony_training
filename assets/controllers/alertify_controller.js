@@ -6,8 +6,10 @@ export default class extends Controller {
         alertify.set('notifier', 'position', 'top-right');
         if (this.element.dataset.type === 'success') {
             alertify.success(this.element.dataset.message);
-        } else {
+        } else if(this.element.dataset.type === 'error') {
             alertify.error(this.element.dataset.message);
+        } else {
+            alertify.message(this.element.dataset.message, 0)
         }
     }
 }

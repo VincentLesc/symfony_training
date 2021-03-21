@@ -4,7 +4,7 @@
 
 {% block body %}
     <main class="d-flex h-100 w-100">
-        <div class="m-auto card p-3">
+        <div class="m-auto card p-3 bg-dark shadow">
             {% for flashError in app.flashes('reset_password_error') %}
                 <div class="alert alert-danger" role="alert">{{ flashError }}</div>
             {% endfor %}
