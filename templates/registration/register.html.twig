@@ -3,6 +3,8 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
+<main class="d-flex h-100 w-100">
+    <div class="m-auto card p-3">
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
@@ -14,8 +16,18 @@
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        <div class="checkbox mb-2">
+            <label>
+                {{ form_widget(registrationForm.agreeTerms) }} Agree terms
+            </label>
+        </div>
 
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="btn btn-primary mb-3 w-100">Register</button>
+
+        <div class="mb-2">
+            <a href="{{ path('app_login') }}">Login</a>
+        </div>
     {{ form_end(registrationForm) }}
+    </div>
+</main>
 {% endblock %}
