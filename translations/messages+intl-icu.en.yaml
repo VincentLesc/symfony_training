@@ -1,0 +1,6 @@
+reset_password:
+  email_form:
+    title: Reset password
+    description: Enter your email address and we we will send you a link to reset your password.
+    submit_cta: 'Reset password'
+
