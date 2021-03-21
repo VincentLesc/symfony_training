@@ -12,3 +12,4 @@ import './styles/app.scss';
 import './bootstrap';
 
 // import bootstrap dependencies
+import 'bootstrap'
