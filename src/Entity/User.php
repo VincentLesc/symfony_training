@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
  * @UniqueEntity(fields={"email"}, message="user_register.constraint.unique_email")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User implements UserInterface
 {
@@ -152,13 +153,12 @@ class User implements UserInterface
     }
 
     /**
-     * @ORM\PrePersist
-     * @param DateTimeInterface $createdAt
-     * @return $this
+     * @ORM\PrePersist()
+     * @return self
      */
-    public function setCreatedAt(DateTimeInterface $createdAt): self
+    public function setCreatedAt(): self
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new \DateTimeImmutable();
 
         return $this;
     }
@@ -170,12 +170,11 @@ class User implements UserInterface
 
     /**
      * @ORM\PreUpdate
-     * @param DateTimeInterface|null $updatedAt
-     * @return $this
+     * @return self
      */
-    public function setUpdatedAt(?DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = new \DateTimeImmutable();
 
         return $this;
     }

@@ -43,4 +43,5 @@ user_login.success.logged: 'Hello! Content de te revoir !'
 app_name: 'Mon Application'
 app_logout: Déconnexion
 app_login: Connexion
-user_registration.email_confirm.send: Confirmez votre adresse mail, en cliquant sur le lien contenu dans le mail de bienvenue.
+user_registration.email_confirm.send: 'Confirmez votre adresse mail, en cliquant sur le lien contenu dans le mail de bienvenue.'
+user_login.login_form.email_not_found: 'Nous n''avons pas réussi à vous authentifier. Vérifiez vos informations.'
