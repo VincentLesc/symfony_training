@@ -43,5 +43,6 @@ user_login.success.logged: 'Hi ! We are happy to see you back !'
 app_name: 'Application name'
 app_logout: Logout
 app_login: Login
+app_update_success: Data updated
 user_registration.email_confirm.send: 'Confirm your email address! An email has just been sent to you.'
 user_login.login_form.email_not_found: 'Email could not be found.'
