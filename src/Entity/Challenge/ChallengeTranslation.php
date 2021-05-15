@@ -34,7 +34,7 @@ class ChallengeTranslation
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=4)
+     * @ORM\Column(type="string", length=5)
      */
     private $locale;
 

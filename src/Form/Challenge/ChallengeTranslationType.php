@@ -52,11 +52,16 @@ class ChallengeTranslationType extends AbstractType
     private function getAvailableLocales(Challenge $challenge)
     {
         $localesRegistered = $this->repository->getLocalesByChallenge($challenge);
-        $locales = array();
+        $locales = [];
+
         foreach ($localesRegistered as $item) {
             $locales[] = $item['locale'];
         }
+
         $defaults = ['fr', 'en', 'es', 'it', 'de'];
-        return array_diff($defaults, $locales)[0];
+
+        $diff = array_diff($defaults, $locales);
+        
+        return count($diff) > 0 ? array_values($diff)[0] : null;
     }
 }

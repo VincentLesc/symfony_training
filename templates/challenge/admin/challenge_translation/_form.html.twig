@@ -1,4 +1,22 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_row(form.challenge) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.locale) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {{ form_row(form.title) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.description) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.rules) }}
+        </div>
+    </div>
+    <button class="btn btn-primary w-100 my-3">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

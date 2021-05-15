@@ -14,6 +14,7 @@
                 <th>ParticipationStartsAt</th>
                 <th>VoteBeginsAt</th>
                 <th>DeliberationAt</th>
+                <th>Locales</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -26,6 +27,11 @@
                 <td>{{ challenge.participationStartsAt ? challenge.participationStartsAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ challenge.voteBeginsAt ? challenge.voteBeginsAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ challenge.deliberationAt ? challenge.deliberationAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    {% for translation in challenge.ChallengeTranslations %}
+                    <span class="badge bg-secondary">{{ translation.locale }}</span>
+                    {% endfor %}
+                </td>
                 <td>
                     <a href="{{ path('challenge_admin_challenge_show', {'id': challenge.id}) }}" class="btn btn-outline-info">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-binoculars" viewBox="0 0 16 16">
