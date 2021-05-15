@@ -2,7 +2,11 @@
 
 namespace App\Entity;
 
+use App\Entity\Challenge\ChallengeParticipation;
+use App\Entity\Challenge\ChallengeParticipationVote;
 use App\Repository\ProfileRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,6 +36,27 @@ class Profile
      * @ORM\Column(type="string", length=32, nullable=true)
      */
     private $pseudo;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ChallengeParticipation::class, mappedBy="profile")
+     */
+    private $challengeParticipations;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ChallengeParticipationVote::class, mappedBy="profile")
+     */
+    private $challengeParticipationVotes;
+
+    public function __construct()
+    {
+        $this->challengeParticipations = new ArrayCollection();
+        $this->challengeParticipationVotes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -70,6 +95,78 @@ class Profile
     public function setPseudo(?string $pseudo): self
     {
         $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ChallengeParticipation[]
+     */
+    public function getChallengeParticipations(): Collection
+    {
+        return $this->challengeParticipations;
+    }
+
+    public function addChallengeParticipation(ChallengeParticipation $challengeParticipation): self
+    {
+        if (!$this->challengeParticipations->contains($challengeParticipation)) {
+            $this->challengeParticipations[] = $challengeParticipation;
+            $challengeParticipation->setProfile($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChallengeParticipation(ChallengeParticipation $challengeParticipation): self
+    {
+        if ($this->challengeParticipations->removeElement($challengeParticipation)) {
+            // set the owning side to null (unless already changed)
+            if ($challengeParticipation->getProfile() === $this) {
+                $challengeParticipation->setProfile(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ChallengeParticipationVote[]
+     */
+    public function getChallengeParticipationVotes(): Collection
+    {
+        return $this->challengeParticipationVotes;
+    }
+
+    public function addChallengeParticipationVote(ChallengeParticipationVote $challengeParticipationVote): self
+    {
+        if (!$this->challengeParticipationVotes->contains($challengeParticipationVote)) {
+            $this->challengeParticipationVotes[] = $challengeParticipationVote;
+            $challengeParticipationVote->setProfile($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChallengeParticipationVote(ChallengeParticipationVote $challengeParticipationVote): self
+    {
+        if ($this->challengeParticipationVotes->removeElement($challengeParticipationVote)) {
+            // set the owning side to null (unless already changed)
+            if ($challengeParticipationVote->getProfile() === $this) {
+                $challengeParticipationVote->setProfile(null);
+            }
+        }
 
         return $this;
     }

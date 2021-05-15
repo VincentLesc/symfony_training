@@ -1,0 +1,39 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}ChallengeTranslation index{% endblock %}
+
+{% block body %}
+    <h1>ChallengeTranslation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Challenge</th>
+                <th>Title</th>
+                <th>Locale</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for challenge_translation in challenge_translations %}
+            <tr>
+                <td>{{ challenge_translation.id }}</td>
+                <td>
+                    <a href="{{ path('challenge_admin_challenge_show', {'id': challenge_translation.challenge.id}) }}">{{ challenge_translation.challenge.name }}</a>
+                </td>
+                <td>{{ challenge_translation.title }}</td>
+                <td>{{ challenge_translation.locale }}</td>
+                <td>
+                    <a href="{{ path('challenge_admin_challenge_translation_show', {'id': challenge_translation.id}) }}">show</a>
+                    <a href="{{ path('challenge_admin_challenge_translation_edit', {'id': challenge_translation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

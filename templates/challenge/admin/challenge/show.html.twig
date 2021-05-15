@@ -1,0 +1,62 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Challenge{% endblock %}
+
+{% block body %}
+    <h1>Challenge</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ challenge.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ challenge.name }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ challenge.createdAt ? challenge.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ challenge.updatedAt ? challenge.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DisplayAt</th>
+                <td>{{ challenge.displayAt ? challenge.displayAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>HideAt</th>
+                <td>{{ challenge.hideAt ? challenge.hideAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ParticipationStartsAt</th>
+                <td>{{ challenge.participationStartsAt ? challenge.participationStartsAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ParticipationEndsAt</th>
+                <td>{{ challenge.participationEndsAt ? challenge.participationEndsAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>VoteBeginsAt</th>
+                <td>{{ challenge.voteBeginsAt ? challenge.voteBeginsAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>VoteEndsAt</th>
+                <td>{{ challenge.voteEndsAt ? challenge.voteEndsAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DeliberationAt</th>
+                <td>{{ challenge.deliberationAt ? challenge.deliberationAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('challenge_admin_challenge_index') }}" class="btn btn-primary w-100 my-3">back to list</a>
+
+    <a href="{{ path('challenge_admin_challenge_edit', {'id': challenge.id}) }}" class="btn btn-warning w-100">edit</a>
+
+    {{ include('challenge/admin/challenge/_delete_form.html.twig') }}
+{% endblock %}

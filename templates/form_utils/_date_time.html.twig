@@ -1,0 +1,20 @@
+<div class="form-group">
+    {{ form_label(form) }}
+    <div class="row">
+        <div class="col pe-0">
+            {{ form_widget(form.date.day) }}
+        </div>
+        <div class="col px-0">
+            {{ form_widget(form.date.month) }}
+        </div>
+        <div class="col ps-0">
+            {{ form_widget(form.date.year) }}
+        </div>
+        <div class="col pe-0">
+            {{ form_widget(form.time.hour) }}
+        </div>
+        <div class="col ps-0">
+            {{ form_widget(form.time.minute) }}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Edit ChallengeTranslation{% endblock %}
+
+{% block body %}
+    <h1>Edit ChallengeTranslation</h1>
+
+    {{ include('challenge/admin/challenge_translation/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('challenge_admin_challenge_translation_index') }}">back to list</a>
+
+    {{ include('challenge/admin/challenge_translation/_delete_form.html.twig') }}
+{% endblock %}

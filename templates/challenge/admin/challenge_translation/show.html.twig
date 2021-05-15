@@ -1,0 +1,38 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}ChallengeTranslation{% endblock %}
+
+{% block body %}
+    <h1>ChallengeTranslation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ challenge_translation.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ challenge_translation.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ challenge_translation.description }}</td>
+            </tr>
+            <tr>
+                <th>Locale</th>
+                <td>{{ challenge_translation.locale }}</td>
+            </tr>
+            <tr>
+                <th>Rules</th>
+                <td>{{ challenge_translation.rules }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('challenge_admin_challenge_translation_index') }}">back to list</a>
+
+    <a href="{{ path('challenge_admin_challenge_translation_edit', {'id': challenge_translation.id}) }}">edit</a>
+
+    {{ include('challenge/admin/challenge_translation/_delete_form.html.twig') }}
+{% endblock %}
