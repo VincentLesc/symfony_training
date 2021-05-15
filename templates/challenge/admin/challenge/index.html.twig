@@ -8,31 +8,33 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>DisplayAt</th>
-                <th>ParticipationStartsAt</th>
-                <th>VoteBeginsAt</th>
-                <th>DeliberationAt</th>
-                <th>Locales</th>
-                <th>actions</th>
+                <th class="col-1">Id</th>
+                <th class="col-2">Name</th>
+                <th class="col-2">State</th>
+                <th class="col-1">ParticipationStartsAt</th>
+                <th class="col-1">VoteBeginsAt</th>
+                <th class="col-1">DeliberationAt</th>
+                <th class="col-2">Locales</th>
+                <th class="col-2">actions</th>
             </tr>
         </thead>
         <tbody>
         {% for challenge in challenges %}
             <tr>
-                <td>{{ challenge.id }}</td>
-                <td>{{ challenge.name }}</td>
-                <td>{{ challenge.displayAt ? challenge.displayAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ challenge.participationStartsAt ? challenge.participationStartsAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ challenge.voteBeginsAt ? challenge.voteBeginsAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ challenge.deliberationAt ? challenge.deliberationAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
+                <td class="col-1">{{ challenge.id }}</td>
+                <td class="col-2">{{ challenge.name }}</td>
+                <td class="col-2">{{ 'challenge.admin.challenge_state_' ~ challenge.state|trans }}</td>
+                <td class="col-1">{{ challenge.participationStartsAt ? challenge.participationStartsAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td class="col-1">{{ challenge.voteBeginsAt ? challenge.voteBeginsAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td class="col-1">{{ challenge.deliberationAt ? challenge.deliberationAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td class="col-2">
                     {% for translation in challenge.ChallengeTranslations %}
-                    <span class="badge bg-secondary">{{ translation.locale }}</span>
+                    <a href="{{ path('challenge_admin_challenge_translation_edit', {'id': translation.id}) }}">
+                    <span class="badge {% if translation.state == constant('App\\Entity\\Challenge\\ChallengeTranslation::PUBLISHED') %} bg-success {% else %} bg-secondary {% endif %}">{{ translation.locale }}</span>
+                    </a>
                     {% endfor %}
                 </td>
-                <td>
+                <td class="col-1">
                     <a href="{{ path('challenge_admin_challenge_show', {'id': challenge.id}) }}" class="btn btn-outline-info">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-binoculars" viewBox="0 0 16 16">
                         <path d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V2.5zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5h-1zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V4zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V3zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14z"></path>

@@ -22,7 +22,7 @@ class ChallengeStateService
         
         if (! $challenge->hasOneValidTranslation()) {
             $state = Challenge::DRAFT;
-        } elseif ($challenge->getHideAt() < $now) {
+        } elseif (null !== $challenge->getHideAt() && $challenge->getHideAt() < $now) {
             $state = Challenge::CLOSED;
         } elseif ($challenge->getDeliberationAt() < $now) {
             $state = Challenge::DELIBERATED;

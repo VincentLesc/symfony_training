@@ -47,7 +47,9 @@
                 <th>Locales</th>
                 <td>
                     {% for translation in challenge.ChallengeTranslations %}
-                        <span class="badge bg-secondary">{{ translation.locale }}</span>
+                    <a href="{{ path('challenge_admin_challenge_translation_edit', {'id': translation.id}) }}" style="text-decoration: none;">
+                    <span class="badge {% if translation.state == constant('App\\Entity\\Challenge\\ChallengeTranslation::PUBLISHED') %} bg-success {% else %} bg-secondary {% endif %}">{{ translation.locale }}</span>
+                    </a>
                     {% endfor %}
                 </td>
                 <td>

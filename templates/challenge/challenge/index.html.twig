@@ -3,18 +3,27 @@
 {% block title %}Hello ChallengeController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/vincent/symfony_training/src/Controller/Challenge/ChallengeController.php'|file_link(0) }}">src/Controller/Challenge/ChallengeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/vincent/symfony_training/templates/challenge/challenge/index.html.twig'|file_link(0) }}">templates/challenge/challenge/index.html.twig</a></code></li>
-    </ul>
+<div class="b-example-divider"></div>
+<div class="container">
+    <div class="row">
+    {% for challenge in challenges %}
+        {% set challengeContent = challenge.ChallengeTranslations|first %}
+        <div class="col-md-6">
+            <div class="card text-center bg-dark">
+                <div class="card-header">
+                    {{ challengeContent.title }}
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ challengeContent.description }}</p>
+                    <a href="{{ path('challenge_show', {'id': challenge.id}) }}" class="btn btn-primary">{{ 'challenge.index.cta_'~ challenge.state|trans }}</a>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
 </div>
+<div class="b-example-divider"></div>
 {% endblock %}

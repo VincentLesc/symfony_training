@@ -3,6 +3,7 @@
 namespace App\Repository\Challenge;
 
 use App\Entity\Challenge\Challenge;
+use App\Entity\Challenge\ChallengeTranslation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -17,6 +18,21 @@ class ChallengeRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Challenge::class);
+    }
+
+    public function findAllChallengesByLocale(string $locale)
+    {
+        return $this->createQueryBuilder('c')
+            ->join('c.challengeTranslations', 'ct')
+            ->addSelect('ct')
+            ->addSelect('CASE WHEN c.state > 50 THEN 2 ELSE (CASE WHEN c.state >20 THEN 3 ELSE 1 END) END AS HIDDEN ord')
+            ->where('ct.locale = :locale')
+            ->andWhere('ct.state = :published')
+            ->setParameter(':locale', $locale)
+            ->setParameter(':published', ChallengeTranslation::PUBLISHED)
+            ->orderBy('ord', 'DESC')
+            ->getQuery()
+            ->getResult();
     }
 
     // /**

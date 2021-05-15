@@ -5,6 +5,7 @@ namespace App\Controller\Challenge\Admin;
 use App\Entity\Challenge\Challenge;
 use App\Form\Challenge\ChallengeType;
 use App\Repository\Challenge\ChallengeRepository;
+use App\Service\Challenge\ChallengeStateService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +29,7 @@ class ChallengeController extends AbstractController
     /**
      * @Route("/new", name="challenge_admin_challenge_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, ChallengeStateService $challengeStateService): Response
     {
         $challenge = new Challenge();
         $form = $this->createForm(ChallengeType::class, $challenge);
@@ -36,6 +37,7 @@ class ChallengeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $challengeStateService->updateState($challenge);
             $entityManager->persist($challenge);
             $entityManager->flush();
 
@@ -61,12 +63,13 @@ class ChallengeController extends AbstractController
     /**
      * @Route("/{id}/edit", name="challenge_admin_challenge_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Challenge $challenge): Response
+    public function edit(Request $request, Challenge $challenge, ChallengeStateService $challengeStateService): Response
     {
         $form = $this->createForm(ChallengeType::class, $challenge);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $challengeStateService->updateState($challenge);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('challenge_admin_challenge_index');
