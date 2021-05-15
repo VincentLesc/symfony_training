@@ -14,6 +14,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Challenge
 {
+    public const DRAFT = 10;
+    public const PUBLISHED = 20;
+    public const PARTICIPATION = 30;
+    public const VOTE = 40;
+    public const WAIT_DELIBERATION = 50;
+    public const DELIBERATED = 60;
+    public const CLOSED = 70;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -80,6 +88,11 @@ class Challenge
      * @ORM\OneToMany(targetEntity=ChallengeParticipation::class, mappedBy="challenge")
      */
     private $challengeParticipations;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $state;
 
     public function __construct()
     {
@@ -285,5 +298,27 @@ class Challenge
         }
 
         return $this;
+    }
+
+    public function getState(): ?int
+    {
+        return $this->state;
+    }
+
+    public function setState(int $state): self
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    public function hasOneValidTranslation(): bool
+    {
+        foreach ($this->challengeTranslations as $trans) {
+            if ($trans->getState() === ChallengeTranslation::PUBLISHED) {
+                return true;
+            }
+        }
+        return false;
     }
 }

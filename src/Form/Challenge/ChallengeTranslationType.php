@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
 use App\Entity\Challenge\ChallengeTranslation;
 use App\Repository\Challenge\ChallengeTranslationRepository;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\LocaleType;
@@ -30,6 +31,9 @@ class ChallengeTranslationType extends AbstractType
             ->add('description')
             ->add('rules')
             ->add('challenge')
+            ->add('state', ChoiceType::class, [
+                'choices' => ['Draft' => ChallengeTranslation::DRAFT, 'Published' => ChallengeTranslation::PUBLISHED]
+            ])
         ;
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             $entity = $event->getData();
@@ -61,7 +65,7 @@ class ChallengeTranslationType extends AbstractType
         $defaults = ['fr', 'en', 'es', 'it', 'de'];
 
         $diff = array_diff($defaults, $locales);
-        
+
         return count($diff) > 0 ? array_values($diff)[0] : null;
     }
 }

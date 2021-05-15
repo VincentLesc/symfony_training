@@ -10,6 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ChallengeTranslation
 {
+    public const DRAFT = 0;
+    public const PUBLISHED = 100;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -42,6 +44,11 @@ class ChallengeTranslation
      * @ORM\Column(type="text")
      */
     private $rules;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $state;
 
     public function getId(): ?int
     {
@@ -104,6 +111,18 @@ class ChallengeTranslation
     public function setRules(string $rules): self
     {
         $this->rules = $rules;
+
+        return $this;
+    }
+
+    public function getState(): ?int
+    {
+        return $this->state;
+    }
+
+    public function setState(int $state): self
+    {
+        $this->state = $state;
 
         return $this;
     }

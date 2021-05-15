@@ -18,5 +18,8 @@
             {{ form_row(form.rules) }}
         </div>
     </div>
+    <div class="row">
+        {{ form_row(form.state) }}
+    </div>
     <button class="btn btn-primary w-100 my-3">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
