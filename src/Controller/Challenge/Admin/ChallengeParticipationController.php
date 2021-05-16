@@ -34,7 +34,7 @@ class ChallengeParticipationController extends AdminController
     {
         $this->controlAccess();
         $challengeParticipation = new ChallengeParticipation();
-        $form = $this->createForm(ChallengeParticipationType::class, $challengeParticipation);
+        $form = $this->createForm(ChallengeParticipationType::class, $challengeParticipation, ['origin'=> 'admin']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

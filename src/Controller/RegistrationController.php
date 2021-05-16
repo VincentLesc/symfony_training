@@ -3,19 +3,20 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
+use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
+use Symfony\Component\Mime\Address;
 use App\Security\LoginFormAuthenticator;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 class RegistrationController extends AbstractController
@@ -33,11 +34,16 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, LoginFormAuthenticator $login, GuardAuthenticatorHandler $guard): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, LoginFormAuthenticator $login, GuardAuthenticatorHandler $guard, SessionInterface $session): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
+
+        if ($request->get('redirect') && $request->getMethod() === 'GET') {
+            $referer = filter_var($request->headers->get('referer'), FILTER_SANITIZE_URL);
+            $session->set('target_path', $referer);
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
@@ -53,18 +59,20 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+            $this->emailVerifier->sendEmailConfirmation(
+                'app_verify_email',
+                $user,
                 (new TemplatedEmail())
                     ->from(new Address('noreply@sf-train.com', 'SF Train'))
                     ->to($user->getEmail())
                     ->subject($this->translator->trans('user_registration.email_confirm.mail_subject'))
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
-            $guard->authenticateUserAndHandleSuccess($user,$request,$login,'main');
+            $guard->authenticateUserAndHandleSuccess($user, $request, $login, 'main');
 
             $this->addFlash('warning', $this->translator->trans('user_registration.email_confirm.send'));
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('profile_edit');
         }
 
         return $this->render('registration/register.html.twig', [

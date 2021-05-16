@@ -5,9 +5,10 @@ namespace App\Controller\Profile;
 use App\Entity\Profile;
 use App\Form\Profile\ProfileType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProfileController extends AbstractController
@@ -36,12 +37,17 @@ class ProfileController extends AbstractController
         }
         $form = $this->createForm(ProfileType::class, $profile);
         $form->handleRequest($request);
+        dump($request->getSession()->get('target_path'));
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($profile);
             $em->flush();
             $this->addFlash("success", $translatorInterface->trans('app_update_success'));
+            dump($request->getSession()->get('target_path'));
+            if ($redirect = $request->getSession()->get('target_path')) {
+                return new RedirectResponse($redirect);
+            }
         }
 
         return $this->render('profile/profile/edit.html.twig', [

@@ -16,7 +16,7 @@
     {% for challenge in challenges %}
         {% set challengeContent = challenge.ChallengeTranslations|first %}
       <div class="col-md-6">
-        <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('https://www.fillmurray.com/690/390');">
+        <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg border-dark" style="background-image: url({{ vich_uploader_asset(challenge, 'mainImageFile') }}); background-size: cover;">
          <a href="{{ path('challenge_show', {'id': challenge.id}) }}" style="text-decoration: none; height: 100%;">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1" style="text-shadow: black 0.1em 0.1em 0.2em;">
             <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{ challengeContent.title }}</h2>
