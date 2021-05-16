@@ -10,8 +10,12 @@
     </div>
     <div class="col-lg-5 offset-lg-1 p-4  overflow-hidden shadow-lg">
         {% if form is defined %}
-        {{form(form)}}
+        {{form_start(form)}}
+        {{form_row(form.title)}}
+        {{form_row(form.description)}}
         <img class="img-fluid col-12 mt-3" src="/img_placeholder.png" alt="Upload picture CTA">
+        <input type="submit" value="submit" class="btn btn-primary w-100 mt-3">
+        {{form_end(form)}}
         {% else %}
         <div style="min-height: 200px;">
         <p>Participations ouvertes aux inscrits</p>

@@ -46,7 +46,7 @@ class ChallengeController extends AbstractController
                 $participation->setProfile($this->getUser()->getProfile());
                 $participation->setChallenge($challenge);
                 $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($$participation);
+                $entityManager->persist($participation);
                 $entityManager->flush();
             }
 
