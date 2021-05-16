@@ -13,16 +13,19 @@ class ChallengeParticipationType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('description')
+            ->add('description');
+        if ($options['origin'] === 'admin') {
+            $builder
             ->add('challenge')
-            ->add('profile')
-        ;
+            ->add('profile');
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => ChallengeParticipation::class,
+            'origin' => 'front'
         ]);
     }
 }

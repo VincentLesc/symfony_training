@@ -8,10 +8,17 @@
         <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
       </div>
     </div>
-    <div class="col-lg-5 offset-lg-1 p-0 position-relative overflow-hidden shadow-lg">
-      <div class="position-lg-absolute top-0 left-0 overflow-hidden">
-        <img class="d-block rounded-lg-3 img-fluid" src="{{ vich_uploader_asset(challenge, 'mainImageFile') }}" alt="">
+    <div class="col-lg-5 offset-lg-1 p-4  overflow-hidden shadow-lg">
+        {% if form is defined %}
+        {{form(form)}}
+        <img class="img-fluid col-12 mt-3" src="/img_placeholder.png" alt="Upload picture CTA">
+        {% else %}
+        <div style="min-height: 200px;">
+        <p>Participations ouvertes aux inscrits</p>
+        <a class="btn btn-primary" href="{{ path('app_login')}}">Connexion</a>
+        <a class="btn btn-primary" href="{{ path('app_register')}}">Inscription</a>
+        </div>
+        {% endif %}
       </div>
-    </div>
   </div>
 </div>
