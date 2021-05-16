@@ -8,3 +8,9 @@ vich_uploader:
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true
+        participation:
+            uri_prefix: /images/participation
+            upload_destination: '%kernel.project_dir%/public/images/participation'
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true

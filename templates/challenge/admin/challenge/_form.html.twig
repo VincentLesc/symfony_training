@@ -3,33 +3,44 @@
         {{ form_row(form.name) }}
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-3">
             {% include "form_utils/_date_time.html.twig" with {'form': form.displayAt} %}
         </div>
-        <div class="col-md-6">
+        <div class="col-md-3">
             {% include "form_utils/_date_time.html.twig" with {'form': form.hideAt} %}
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-3">
             {% include "form_utils/_date_time.html.twig" with {'form': form.participationStartsAt} %}
         </div>
-        <div class="col-md-6">
+        <div class="col-md-3">
             {% include "form_utils/_date_time.html.twig" with {'form': form.participationEndsAt} %}
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-3">
             {% include "form_utils/_date_time.html.twig" with {'form': form.voteBeginsAt} %}
         </div>
-        <div class="col-md-6">
+        <div class="col-md-3">
             {% include "form_utils/_date_time.html.twig" with {'form': form.voteEndsAt} %}
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
+        <div class="col-md-3 offset-md-3">
             {% include "form_utils/_date_time.html.twig" with {'form': form.deliberationAt} %}
         </div>
     <div>
+    <div class="row">
+        <div class="col">
+               {{form_row(form.mainImageFile, {
+                    'attr': {
+                        'data-controller': 'imageupload',
+                        'data-related-img': '#headerPicture'
+                        },
+                        'row_attr': {
+                                    'style': 'display: none;'
+                                    }
+                    })
+                }}
+                <img id="headerPicture" class="img-fluid col-12 mt-3" src="/img_placeholder.png" alt="Upload picture CTA">
+        </div>
+    </div>
     <button class="btn mt-3 w-100 btn-primary">{{ button_label|default('Save')|trans }}</button>
 {{ form_end(form) }}
