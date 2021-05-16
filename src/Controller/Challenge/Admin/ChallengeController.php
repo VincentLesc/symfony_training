@@ -4,23 +4,25 @@ namespace App\Controller\Challenge\Admin;
 
 use App\Entity\Challenge\Challenge;
 use App\Form\Challenge\ChallengeType;
-use App\Repository\Challenge\ChallengeRepository;
-use App\Service\Challenge\ChallengeStateService;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Controller\Admin\AdminController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\Challenge\ChallengeStateService;
+use App\Repository\Challenge\ChallengeRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/challenge/admin/challenge")
+ * @Route("/admin/challenge")
  */
-class ChallengeController extends AbstractController
+class ChallengeController extends AdminController
 {
     /**
      * @Route("/", name="challenge_admin_challenge_index", methods={"GET"})
      */
     public function index(ChallengeRepository $challengeRepository): Response
     {
+        $this->controlAccess();
         return $this->render('challenge/admin/challenge/index.html.twig', [
             'challenges' => $challengeRepository->findAll(),
         ]);
@@ -31,6 +33,7 @@ class ChallengeController extends AbstractController
      */
     public function new(Request $request, ChallengeStateService $challengeStateService): Response
     {
+        $this->controlAccess();
         $challenge = new Challenge();
         $form = $this->createForm(ChallengeType::class, $challenge);
         $form->handleRequest($request);
@@ -55,6 +58,7 @@ class ChallengeController extends AbstractController
      */
     public function show(Challenge $challenge): Response
     {
+        $this->controlAccess();
         return $this->render('challenge/admin/challenge/show.html.twig', [
             'challenge' => $challenge,
         ]);
@@ -65,6 +69,7 @@ class ChallengeController extends AbstractController
      */
     public function edit(Request $request, Challenge $challenge, ChallengeStateService $challengeStateService): Response
     {
+        $this->controlAccess();
         $form = $this->createForm(ChallengeType::class, $challenge);
         $form->handleRequest($request);
 
@@ -86,6 +91,7 @@ class ChallengeController extends AbstractController
      */
     public function delete(Request $request, Challenge $challenge): Response
     {
+        $this->controlAccess();
         if ($this->isCsrfTokenValid('delete'.$challenge->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($challenge);

@@ -3,25 +3,35 @@
 {% block title %}{{ 'user_registration.registration_form.title' | trans }}{% endblock %}
 
 {% block body %}
-<main class="d-flex h-100 w-100">
-    <div class="m-auto card p-3 bg-dark shadow">
-    <h1>{{ 'user_registration.registration_form.title' | trans }}</h1>
+    <main class="d-flex h-100 w-100">
+        <div class="m-auto">
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword) }}
-        <div class="checkbox mb-2">
-            <label>
-                {{ form_widget(registrationForm.agreeTerms) }} {{ 'user_registration.registration_form.agreeTerms_label' | trans }}
-            </label>
-        </div>
-
-        <button type="submit" class="btn btn-primary mb-3 w-100">{{ 'user_registration.registration_form.cta' | trans }}</button>
-
-        <div class="mb-2">
-            <a href="{{ path('app_login') }}">{{ 'user_registration.registration_form.to_login_cta' | trans }}</a>
-        </div>
-    {{ form_end(registrationForm) }}
+<div class="container col-xl-10 px-4 py-5">
+  <div class="row align-items-center g-5 py-5">
+    <div class="col-lg-6 text-center text-lg-start">
+      <h1 class="display-4 fw-bold lh-1 mb-3">{{ 'register.form.header.title'|trans}}</h1>
+      <p class="col-lg-10 fs-4">{{ 'register.form.header.description'|trans}}</p>
     </div>
-</main>
+    <div class=" mx-auto col-lg-6">
+        {{ form_start(registrationForm, {'attr': {'class': 'p-5 shadow-lg rounded-3 bg-dark'}}) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.plainPassword) }}
+            <div class="checkbox mb-2">
+                <label>
+                    {{ form_widget(registrationForm.agreeTerms) }}
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary mb-3 w-100">{{ 'user_registration.registration_form.cta' | trans }}</button>
+
+            <div class="mb-2">
+                <a href="{{ path('app_login') }}">{{ 'user_registration.registration_form.to_login_cta' | trans }}</a>
+            </div>
+        {{ form_end(registrationForm) }}
+    </div>
+  </div>
+</div>
+
+        </div>
+    </main>
 {% endblock %}

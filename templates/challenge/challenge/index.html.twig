@@ -5,21 +5,8 @@
 {% block body %}
 <div class="b-example-divider"></div>
 
-<div class="px-4 pt-5 my-1 text-center">
-  <h1 class="display-4 fw-bold">Centered screenshot</h1>
-  <div class="col-lg-6 mx-auto">
-    <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
-    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-      <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Primary button</button>
-      <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
-    </div>
-  </div>
-  <div class="overflow-hidden" style="max-height: 30vh;">
-    <div class="container px-5">
-      <img src="https://www.fillmurray.com/640/360" class="img-fluid rounded-3 shadow-lg" alt="Example image" width="700" height="500" loading="lazy">
-    </div>
-  </div>
-</div>
+{% include "challenge/challenge/_challenge_header.html.twig" %}
+
 <div class="b-example-divider"></div>
 
  <div class="container px-4 py-5" id="custom-cards">
@@ -30,20 +17,17 @@
         {% set challengeContent = challenge.ChallengeTranslations|first %}
       <div class="col-md-6">
         <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('https://www.fillmurray.com/690/390');">
-         <a href="{{ path('challenge_show', {'id': challenge.id}) }}" style="text-decoration: none;">
-          <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1" style="text-shadow: black 0.1em 0.1em 0.2em; text-decoration: none;">
-            <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Much longer title that wraps to multiple lines</h2>
-            <ul class="d-flex list-unstyled mt-auto">
+         <a href="{{ path('challenge_show', {'id': challenge.id}) }}" style="text-decoration: none; height: 100%;">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1" style="text-shadow: black 0.1em 0.1em 0.2em;">
+            <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{ challengeContent.title }}</h2>
+            <ul class="d-flex list-unstyled mt-auto align-content-between">
               <li class="me-auto">
                 <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
               </li>
               <li class="d-flex align-items-center me-3">
-                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
-                <small >Pakistan</small>
               </li>
               <li class="d-flex align-items-center">
-                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>
-                <small>4d</small>
+                <span class="btn btn-primary">{{ ('challenge.index.cta.state_' ~ challenge.state)|trans }}</span>
               </li>
             </ul>
           </div>

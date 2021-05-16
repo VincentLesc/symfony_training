@@ -3,24 +3,25 @@
 namespace App\Controller\Challenge\Admin;
 
 use App\Entity\Challenge\Challenge;
-use App\Entity\Challenge\ChallengeTranslation;
-use App\Form\Challenge\ChallengeTranslationType;
-use App\Repository\Challenge\ChallengeTranslationRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Controller\Admin\AdminController;
 use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Challenge\ChallengeTranslation;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\Challenge\ChallengeTranslationType;
+use App\Repository\Challenge\ChallengeTranslationRepository;
 
 /**
- * @Route("/challenge/admin/challenge/translation")
+ * @Route("/admin/challenge_translation")
  */
-class ChallengeTranslationController extends AbstractController
+class ChallengeTranslationController extends AdminController
 {
     /**
      * @Route("/", name="challenge_admin_challenge_translation_index", methods={"GET"})
      */
     public function index(ChallengeTranslationRepository $challengeTranslationRepository): Response
     {
+        $this->controlAccess();
         return $this->render('challenge/admin/challenge_translation/index.html.twig', [
             'challenge_translations' => $challengeTranslationRepository->findAll(),
         ]);
@@ -31,6 +32,7 @@ class ChallengeTranslationController extends AbstractController
      */
     public function new(Request $request, Challenge $challenge): Response
     {
+        $this->controlAccess();
         $challengeTranslation = new ChallengeTranslation();
         $challengeTranslation->setChallenge($challenge);
         $form = $this->createForm(ChallengeTranslationType::class, $challengeTranslation);
@@ -55,6 +57,7 @@ class ChallengeTranslationController extends AbstractController
      */
     public function show(ChallengeTranslation $challengeTranslation): Response
     {
+        $this->controlAccess();
         return $this->render('challenge/admin/challenge_translation/show.html.twig', [
             'challenge_translation' => $challengeTranslation,
         ]);
@@ -65,6 +68,7 @@ class ChallengeTranslationController extends AbstractController
      */
     public function edit(Request $request, ChallengeTranslation $challengeTranslation): Response
     {
+        $this->controlAccess();
         $form = $this->createForm(ChallengeTranslationType::class, $challengeTranslation);
         $form->handleRequest($request);
 
@@ -85,6 +89,7 @@ class ChallengeTranslationController extends AbstractController
      */
     public function delete(Request $request, ChallengeTranslation $challengeTranslation): Response
     {
+        $this->controlAccess();
         if ($this->isCsrfTokenValid('delete'.$challengeTranslation->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($challengeTranslation);

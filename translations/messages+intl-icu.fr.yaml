@@ -46,3 +46,16 @@ app_login: Connexion
 app_update_success: Modifications enregistrées
 user_registration.email_confirm.send: 'Confirmez votre adresse mail, en cliquant sur le lien contenu dans le mail de bienvenue.'
 user_login.login_form.email_not_found: 'Nous n''avons pas réussi à vous authentifier. Vérifiez vos informations.'
+challenge.index.cta.state_20: À venir 
+challenge.index.cta.state_30: Participation
+challenge.index.cta.state_40: Vote
+challenge.index.cta.state_50: Délibération
+challenge.index.cta.state_60: Voici les gagnants
+challenge.index.cta.state_70: Cloturé
+challenge.index.header.cta.register: Rejoins-nous
+challenge.index.header.title: 'Montres nous tes talents'
+challenge.index.header.cta.last_challenge: 'Voir le challenge en cours'
+register.form.header.title: 'Rejoins la communauté pour participer'
+register.form.header.description: 'Lorem ipsum ideat correctis Lorem ipsum ideat correctis Lorem ipsum ideat correctis Lorem ipsum ideat correctis Lorem ipsum ideat correctis ..........'
+login.form.header.title: 'Rejoins la communauté pour participer'
+login.form.header.description: 'Lorem ipsum ideat correctis Lorem ipsum ideat correctis Lorem ipsum ideat correctis Lorem ipsum ideat correctis Lorem ipsum ideat correctis ..........'

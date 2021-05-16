@@ -3,9 +3,19 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+
+
     <main class="d-flex h-100 w-100">
         <div class="m-auto">
-            <form method="post" class="card p-3 bg-dark shadow text-light">
+
+<div class="container col-xl-10 px-4 py-5">
+  <div class="row align-items-center g-5 py-5">
+    <div class="col-lg-6 text-center text-lg-start">
+      <h1 class="display-4 fw-bold lh-1 mb-3">{{ 'login.form.header.title'|trans }}</h1>
+      <p class="col-lg-10 fs-4">{{ 'login.form.header.description'|trans}}</p>
+    </div>
+    <div class=" mx-auto col-lg-6">
+            <form method="post" class="p-5 shadow-lg rounded-3 bg-dark">
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
@@ -42,7 +52,11 @@
                 <div class="mb-2">
                     <a href="{{ path('app_register') }}">{{ 'user_login.login_form.to_register' | trans }}</a>
                 </div>
-            </form>
+            </form> 
+    </div>
+  </div>
+</div>
+
         </div>
     </main>
 {% endblock %}

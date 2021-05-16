@@ -33,7 +33,7 @@ class ChallengeController extends AbstractController
     {
         $locale = $request->getLocale();
 
-        $challengeContent = $challengeTranslationRepository->findOneBy(['locale' => $locale]);
+        $challengeContent = $challengeTranslationRepository->findOneBy(['locale' => $locale, 'challenge' => $challenge]);
 
         return $this->render('challenge/challenge/show.html.twig', [
             'challengeContent' => $challengeContent,

@@ -7,6 +7,7 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * @ORM\Entity(repositoryClass=ChallengeRepository::class)
@@ -98,6 +99,13 @@ class Challenge
     {
         $this->challengeTranslations = new ArrayCollection();
         $this->challengeParticipations = new ArrayCollection();
+        $this->displayAt = new DateTime();
+        $this->hideAt = new DateTime("+5 years");
+        $this->participationStartsAt = new DateTime("+ 1 week");
+        $this->participationEndsAt = new DateTime("+1 month");
+        $this->voteBeginsAt = $this->participationEndsAt;
+        $this->voteEndsAt = new DateTime("+6 weeks");
+        $this->deliberationAt = new DateTime("+45 days");
     }
 
     public function __toString()

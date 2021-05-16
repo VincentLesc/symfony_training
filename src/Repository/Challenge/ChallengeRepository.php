@@ -4,6 +4,7 @@ namespace App\Repository\Challenge;
 
 use App\Entity\Challenge\Challenge;
 use App\Entity\Challenge\ChallengeTranslation;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -25,9 +26,11 @@ class ChallengeRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('c')
             ->join('c.challengeTranslations', 'ct')
             ->addSelect('ct')
-            ->addSelect('CASE WHEN c.state > 50 THEN 2 ELSE (CASE WHEN c.state >20 THEN 3 ELSE 1 END) END AS HIDDEN ord')
+            ->addSelect('CASE WHEN c.state > 50 THEN 2 ELSE (CASE WHEN c.state >=20 THEN 3 ELSE 1 END) END AS HIDDEN ord')
             ->where('ct.locale = :locale')
             ->andWhere('ct.state = :published')
+            ->andWhere('c.state < 70')
+            ->andWhere('c.state > 10')
             ->setParameter(':locale', $locale)
             ->setParameter(':published', ChallengeTranslation::PUBLISHED)
             ->orderBy('ord', 'DESC')
