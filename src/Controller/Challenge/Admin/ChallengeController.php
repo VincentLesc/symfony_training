@@ -65,7 +65,7 @@ class ChallengeController extends AdminController
     }
 
     /**
-     * @Route("/{id}/edit", name="challenge_admin_challenge_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="challenge_admin_challenge_edit", methods={"GET","POST"}, requirements={"id"="\d+"})
      */
     public function edit(Request $request, Challenge $challenge, ChallengeStateService $challengeStateService): Response
     {
@@ -87,7 +87,7 @@ class ChallengeController extends AdminController
     }
 
     /**
-     * @Route("/{id}", name="challenge_admin_challenge_delete", methods={"POST"})
+     * @Route("/{id}", name="challenge_admin_challenge_delete", methods={"POST"}, requirements={"id"="\d+"})
      */
     public function delete(Request $request, Challenge $challenge): Response
     {

@@ -1,0 +1,37 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}ChallengeParticipation index{% endblock %}
+
+{% block body %}
+    <h1>ChallengeParticipation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for challenge_participation in challenge_participations %}
+            <tr>
+                <td>{{ challenge_participation.id }}</td>
+                <td>{{ challenge_participation.title }}</td>
+                <td>{{ challenge_participation.description }}</td>
+                <td>
+                    <a href="{{ path('challenge_admin_challenge_participation_show', {'id': challenge_participation.id}) }}">show</a>
+                    <a href="{{ path('challenge_admin_challenge_participation_edit', {'id': challenge_participation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('challenge_admin_challenge_participation_new') }}">Create new</a>
+{% endblock %}

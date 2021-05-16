@@ -5,6 +5,7 @@ namespace App\Form\Challenge;
 use App\Entity\Challenge\Challenge;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ChallengeType extends AbstractType
@@ -20,6 +21,15 @@ class ChallengeType extends AbstractType
             ->add('voteBeginsAt')
             ->add('voteEndsAt')
             ->add('deliberationAt')
+            ->add('mainImageFile', VichImageType::class, [
+                'required' => false,
+                'allow_delete' => true,
+                'delete_label' => '...',
+                'download_label' => '...',
+                'download_uri' => true,
+                'image_uri' => true,
+                'asset_helper' => true,
+            ])
         ;
     }
 

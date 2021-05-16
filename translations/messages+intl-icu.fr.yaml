@@ -40,6 +40,7 @@ user_login.login_form.cta: Connexion
 user_login.login_form.to_reset_password: 'Réinitialisation du mot de passe.'
 user_login.login_form.to_register: 'Rejoins-nous !'
 user_login.success.logged: 'Hello! Content de te revoir !'
+user_register.constraint.unique_pseudo: 'Ce pseudo est déjà utilisé'
 app_name: 'Mon Application'
 app_logout: Déconnexion
 app_login: Connexion

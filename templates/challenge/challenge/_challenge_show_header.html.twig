@@ -1,0 +1,20 @@
+<div class="container my-5">
+  <div class="row p-4 pb-0 pe-lg-0 py-0 align-items-center rounded-3 shadow-lg">
+        <div class="col-lg-7 p-3 p-lg-5">
+        <h1 class="display-5 fw-bold lh-1 mb-3">{{ challengeContent.title }}</h1>
+        <p class="lead">{{ challengeContent.description }}</p>
+        {% if app.user %}
+        {% if challenge.state == constant('App\\Entity\\Challenge\\Challenge::PUBLISHED') %}
+            <p class="fw-bold" style="font-size: 1.2rem;">{{ 'challenge.show.header.open_participation_at' }} {{challenge.participationStartsAt ? challenge.participationStartsAt|date("d F Y H:i") : '' }}</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <a  class="btn btn-primary btn-lg px-4 me-md-2">{{ 'challenge.show.header.cta_state_'~challenge.state|trans}}</a>
+            </div>
+        {% endif %}
+        {% endif %}
+        </div>
+        <div class="col-lg-5 pe-0">
+            <img src="{{ vich_uploader_asset(challenge, 'mainImageFile') }}" class="d-block mx-0 img-fluid" alt="Bootstrap Themes" loading="lazy">
+        </div>
+    </div>
+</div>
+<div class="b-example-divider"></div>

@@ -4,13 +4,14 @@ namespace App\Entity;
 
 use App\Entity\Challenge\ChallengeParticipation;
 use App\Entity\Challenge\ChallengeParticipationVote;
-use App\Repository\ProfileRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ProfileRepository::class)
+ * @UniqueEntity(fields={"pseudo"}, message="user_register.constraint.unique_pseudo")
  */
 class Profile
 {
@@ -33,7 +34,7 @@ class Profile
     private $birthdate;
 
     /**
-     * @ORM\Column(type="string", length=32, nullable=true)
+     * @ORM\Column(type="string", length=32, nullable=false, unique=true)
      */
     private $pseudo;
 
@@ -56,6 +57,11 @@ class Profile
     {
         $this->challengeParticipations = new ArrayCollection();
         $this->challengeParticipationVotes = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->pseudo;
     }
 
     public function getId(): ?int
