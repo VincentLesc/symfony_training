@@ -37,14 +37,12 @@ class ProfileController extends AbstractController
         }
         $form = $this->createForm(ProfileType::class, $profile);
         $form->handleRequest($request);
-        dump($request->getSession()->get('target_path'));
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($profile);
             $em->flush();
             $this->addFlash("success", $translatorInterface->trans('app_update_success'));
-            dump($request->getSession()->get('target_path'));
             if ($redirect = $request->getSession()->get('target_path')) {
                 return new RedirectResponse($redirect);
             }

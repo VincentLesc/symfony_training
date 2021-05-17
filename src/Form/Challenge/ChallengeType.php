@@ -21,6 +21,7 @@ class ChallengeType extends AbstractType
             ->add('voteBeginsAt')
             ->add('voteEndsAt')
             ->add('deliberationAt')
+            ->add('maxParticipationsPerProfile')
             ->add('mainImageFile', VichImageType::class, [
                 'required' => false,
                 'allow_delete' => true,

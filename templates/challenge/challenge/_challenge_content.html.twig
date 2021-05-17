@@ -1,5 +1,8 @@
-{% if challenge.state == constant('App\\Entity\\Challenge\\Challenge::PARTICIPATION') %}
+{% if challenge.state == constant('App\\Entity\\Challenge\\Challenge::PARTICIPATION') and app.user is not null %}
     {% include "challenge/challenge/_includes/_content_participation.html.twig" %}
+    <div class="b-example-divider"></div>
+{% elseif challenge.state == constant('App\\Entity\\Challenge\\Challenge::PARTICIPATION') %}
+    {% include "challenge/challenge/_includes/_content_participation_notconnected.html.twig" %}
     <div class="b-example-divider"></div>
 {% elseif challenge.state == constant('App\\Entity\\Challenge\\Challenge::PUBLISHED') %}
     {% include "challenge/challenge/_includes/_content_rules.html.twig" %}

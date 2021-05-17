@@ -7,7 +7,6 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -113,6 +112,11 @@ class Challenge
      * @var string|null
      */
     private $mainImageName;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $maxParticipationsPerProfile;
 
     public function __construct()
     {
@@ -383,5 +387,17 @@ class Challenge
     public function getMainImageName(): ?string
     {
         return $this->mainImageName;
+    }
+
+    public function getMaxParticipationsPerProfile(): ?int
+    {
+        return $this->maxParticipationsPerProfile;
+    }
+
+    public function setMaxParticipationsPerProfile(int $maxParticipationsPerProfile): self
+    {
+        $this->maxParticipationsPerProfile = $maxParticipationsPerProfile;
+
+        return $this;
     }
 }

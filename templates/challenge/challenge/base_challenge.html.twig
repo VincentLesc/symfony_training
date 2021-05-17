@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ChallengeController!{% endblock %}
+
+{% block body %}
+<div class="b-example-divider"></div>
+    {% block challenge_header %}
+        {% include "challenge/challenge/_challenge_show_header.html.twig" %}
+    {% endblock %}
+    {% block challenge_content %}
+        {% include "challenge/challenge/_challenge_content.html.twig" %}
+    {% endblock %}
+{% endblock %}

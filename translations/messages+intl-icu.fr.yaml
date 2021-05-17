@@ -56,6 +56,7 @@ challenge.index.cta.state_70: Cloturé
 challenge.index.header.cta.register: Rejoins-nous
 challenge.index.header.title: 'Montres nous tes talents'
 challenge.index.header.cta.last_challenge: 'Voir le challenge en cours'
+challenge.participation.complete_profile: 'Complète ton profil pour participer'
 register.form.header.title: 'Rejoins la communauté pour participer'
 register.form.header.description: 'Lorem ipsum ideat correctis Lorem ipsum ideat correctis Lorem ipsum ideat correctis Lorem ipsum ideat correctis Lorem ipsum ideat correctis ..........'
 login.form.header.title: 'Rejoins la communauté pour participer'
