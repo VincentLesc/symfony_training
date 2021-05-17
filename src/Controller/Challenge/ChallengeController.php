@@ -62,9 +62,9 @@ class ChallengeController extends AbstractController
                 return $this->redirectToRoute('profile_edit');
             }
 
-            $participationChecker = $challengeParticipationService->canProfileParticipate($challenge, $profile);
+            $participationChecker = $challengeParticipationService->canProfileParticipate($challenge, $profile, $userParticipations);
 
-            if ($challenge->getState() === Challenge::PARTICIPATION) {
+            if ($challenge->getState() === Challenge::PARTICIPATION && true === $participationChecker['response']) {
                 $participation = new ChallengeParticipation();
                 $form = $this->createForm(ChallengeParticipationType::class, $participation);
                 $form->handleRequest($request);
@@ -98,20 +98,41 @@ class ChallengeController extends AbstractController
     /**
      * @Route("/challenge/{id}/participation-success", name="challenge_participation_success", requirements={"id"="\d+"})
      */
-    public function challengeParticipationSuccess(Request $request, Challenge $challenge, ChallengeTranslationRepository $challengeTranslationRepository, ChallengeParticipationRepository $challengeParticipationRepository)
-    {
+    public function challengeParticipationSuccess(
+        Request $request,
+        Challenge $challenge,
+        ChallengeTranslationRepository $challengeTranslationRepository,
+        ChallengeParticipationRepository $challengeParticipationRepository,
+        ChallengeParticipationService $challengeParticipationService
+    ) {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
         if (! $this->getUser()) {
             return $this->redirectToRoute('challenge_show', ['id' => $challenge->getId()]);
         }
         $locale = $request->getLocale();
         $challengeContent = $challengeTranslationRepository->findOneBy(['locale' => $locale, 'challenge' => $challenge]);
-        $userParticipations = $challengeParticipationRepository->findBy(['challenge' => $challenge, 'profile' => $this->getUser()->getProfile()]);
+        $userParticipations = $challengeParticipationRepository->findBy(
+            [
+                'challenge' => $challenge,
+                'profile' => $this->getUser()->getProfile()
+            ],
+            [
+                'createdAt' => 'DESC'
+            ]
+        );
+        if (count($userParticipations) === 0) {
+            return $this->redirectToRoute('challenge_show', ['id' => $challenge->getId()]);
+        }
+
+        $participationsChecker = $challengeParticipationService->canProfileParticipate($challenge, $this->getUser()->getProfile(), $userParticipations);
+
 
         return $this->render('challenge/challenge/participation_success.html.twig', [
             'challengeContent' => $challengeContent,
             'challenge' => $challenge,
-            'userParticipations' => $userParticipations
+            'userParticipations' => $userParticipations,
+            'remainingParticipations' => $participationsChecker['remainingParticipations'],
+            'createdParticipations' => $participationsChecker['createdParticipations']
         ]);
     }
 }

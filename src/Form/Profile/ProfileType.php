@@ -29,7 +29,8 @@ class ProfileType extends AbstractType
                 'label' => $this->translator->trans('profile.birthdate.label')
             ])
             ->add('description', TextareaType::class, [
-                'label' => $this->translator->trans('profile.description.label')
+                'label' => $this->translator->trans('profile.description.label'),
+                'required' => false
             ]);
     }
 

@@ -3,6 +3,7 @@
 namespace App\Entity\Challenge;
 
 use App\Entity\Profile;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,6 +12,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ChallengeParticipationRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  * @Vich\Uploadable
  */
 class ChallengeParticipation
@@ -64,6 +66,16 @@ class ChallengeParticipation
      * @var string|null
      */
     private $imageName;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
 
     public function __construct()
     {
@@ -187,5 +199,39 @@ class ChallengeParticipation
     public function getImageName(): ?string
     {
         return $this->imageName;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @ORM\Prepersist
+     *
+     * @return self
+     */
+    public function setCreatedAt(): self
+    {
+        $this->createdAt = new DateTime();
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     *
+     * @return self
+     */
+    public function setUpdatedAt(): self
+    {
+        $this->updatedAt = new DateTime();
+
+        return $this;
     }
 }
