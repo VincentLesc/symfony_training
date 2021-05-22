@@ -32,7 +32,9 @@
           <div class="row">
             {% for key,participation in userParticipations %}
             <div class="col-4">
-              <img src="{{ vich_uploader_asset(participation, 'imageFile') }}" class="img-fluid"></img>
+              <div style="min-height=10vh;">
+                <img src="{{ vich_uploader_asset(participation, 'imageFile') | imagine_filter('my_thumb') }}" class="img-fluid"></img>
+              </div>
             </div>
             {% endfor %}
             </div>
