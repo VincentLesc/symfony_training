@@ -207,7 +207,7 @@ class ChallengeParticipation
     }
 
     /**
-     * @ORM\Prepersist
+     * @ORM\PrePersist
      *
      * @return self
      */

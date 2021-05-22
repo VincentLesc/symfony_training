@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\Challenge\ChallengeRepository;
 use App\Repository\Challenge\ChallengeTranslationRepository;
 use App\Service\Challenge\ChallengeParticipationService;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -62,9 +63,9 @@ class ChallengeController extends AbstractController
                 return $this->redirectToRoute('profile_edit');
             }
 
-            $participationChecker = $challengeParticipationService->canProfileParticipate($challenge, $profile, $userParticipations);
+            $participationsChecker = $challengeParticipationService->canProfileParticipate($challenge, $profile, $userParticipations);
 
-            if ($challenge->getState() === Challenge::PARTICIPATION && true === $participationChecker['response']) {
+            if ($challenge->getState() === Challenge::PARTICIPATION && true === $participationsChecker['response']) {
                 $participation = new ChallengeParticipation();
                 $form = $this->createForm(ChallengeParticipationType::class, $participation);
                 $form->handleRequest($request);
@@ -72,6 +73,7 @@ class ChallengeController extends AbstractController
                 if ($form->isSubmitted() && $form->isValid()) {
                     $participation->setProfile($this->getUser()->getProfile());
                     $participation->setChallenge($challenge);
+                    $participation->setCreatedAt(new DateTime());
                     $entityManager = $this->getDoctrine()->getManager();
                     $entityManager->persist($participation);
                     $entityManager->flush();
@@ -80,18 +82,29 @@ class ChallengeController extends AbstractController
     
                     return $this->redirectToRoute('challenge_participation_success', ['id' => $challenge->getId()]);
                 }
-    
+
                 return $this->render('challenge/challenge/show.html.twig', [
                     'challengeContent' => $challengeContent,
                     'challenge' => $challenge,
-                    'form' => $form->createView()
+                    'form' => $form->createView(),
+                    'userParticipations' => $userParticipations,
+                    'remainingParticipations' => $participationsChecker['remainingParticipations'],
+                    'createdParticipations' => $participationsChecker['createdParticipations']
                 ]);
             }
+
+            return $this->render('challenge/challenge/show.html.twig', [
+                'challengeContent' => $challengeContent,
+                'challenge' => $challenge,
+                'userParticipations' => $userParticipations,
+                'remainingParticipations' => $participationsChecker['remainingParticipations'],
+                'createdParticipations' => $participationsChecker['createdParticipations']
+            ]);
         }
 
         return $this->render('challenge/challenge/show.html.twig', [
             'challengeContent' => $challengeContent,
-            'challenge' => $challenge
+            'challenge' => $challenge,
         ]);
     }
 

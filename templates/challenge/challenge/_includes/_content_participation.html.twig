@@ -1,8 +1,13 @@
 <div class="container my-5">
-  <div class="row p-4 py-0 pe-lg-0 align-items-center rounded-3 shadow-lg">
+  <div class="row p-4 py-0 pe-lg-0 align-items-center rounded-3 shadow-lg" id="participate">
     <div class="col-lg-6 p-3 p-lg-5 pt-lg-3">
+      {% if form is defined %}
       <h1 class="display-4 fw-bold lh-1">Border hero with cropped image and shadows</h1>
       <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+      {% else %}
+      <h1 class="display-4 fw-bold lh-1">Border hero with cropped image and shadows</h1>
+      <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+      {% endif %}
     </div>
     <div class="col-lg-5 offset-lg-1 p-4  overflow-hidden shadow-lg">
         {% if form is defined %}
@@ -23,8 +28,14 @@
         <input type="submit" value="submit" class="btn btn-primary w-100 mt-3">
         {{form_end(form)}}
         {% else %}
-        <div style="min-height: 200px;" class="d-flex flex-column justify-content-between align-items-center">
-            <p>Tu as atteint le nombre max de participations.</p>
+        <div style="min-height: 300px;">
+          <div class="row">
+            {% for key,participation in userParticipations %}
+            <div class="col-4">
+              <img src="{{ vich_uploader_asset(participation, 'imageFile') }}" class="img-fluid"></img>
+            </div>
+            {% endfor %}
+            </div>
         </div>
         {% endif %}
       </div>

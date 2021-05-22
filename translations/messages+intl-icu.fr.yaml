@@ -45,6 +45,8 @@ app_name: 'Mon Application'
 app_logout: Déconnexion
 app_login: Connexion
 app_update_success: Modifications enregistrées
+app_homepage: Accueil
+app.back_home: Retour à l'accueil
 user_registration.email_confirm.send: 'Confirmez votre adresse mail, en cliquant sur le lien contenu dans le mail de bienvenue.'
 user_login.login_form.email_not_found: 'Nous n''avons pas réussi à vous authentifier. Vérifiez vos informations.'
 challenge.index.cta.state_20: À venir 
@@ -57,6 +59,19 @@ challenge.index.header.cta.register: Rejoins-nous
 challenge.index.header.title: 'Montres nous tes talents'
 challenge.index.header.cta.last_challenge: 'Voir le challenge en cours'
 challenge.participation.complete_profile: 'Complète ton profil pour participer'
+challenge.participation.participation_add: 'Participes encore'
+challenge.participations.success.title: 'Participation Validée !'
+challenge.participations.success.description: >-
+  { createdParticipations, plural,
+    one   {Hey! Nous avons bien enregistré 1 participation.}
+    other {Nous avons bien enregistré tes # participations.}
+  }
+challenge.participations.success.remaining_participations_description: >-
+  { remaining, plural,
+    =0    {Tu as atteint le maximum de participations pour ce challenge.}
+    one   {Il te reste 1 participation pour ce challenge.}
+    other {Il te reste # participations possible pour ce challenge.}
+  }
 register.form.header.title: 'Rejoins la communauté pour participer'
 register.form.header.description: 'Lorem ipsum ideat correctis Lorem ipsum ideat correctis Lorem ipsum ideat correctis Lorem ipsum ideat correctis Lorem ipsum ideat correctis ..........'
 login.form.header.title: 'Rejoins la communauté pour participer'
