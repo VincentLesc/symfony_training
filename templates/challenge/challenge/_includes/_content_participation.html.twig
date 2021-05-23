@@ -1,45 +1,73 @@
 <div class="container my-5">
-  <div class="row p-4 py-0 pe-lg-0 align-items-center rounded-3 shadow-lg" id="participate">
+  <div class="row p-lg-4 p-0 pe-lg-0 align-items-center rounded-3 shadow-lg" id="participate">
     <div class="col-lg-6 p-3 p-lg-5 pt-lg-3">
       {% if form is defined %}
       <h1 class="display-4 fw-bold lh-1">Border hero with cropped image and shadows</h1>
       <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+      <hr/>
+      <div class="row">
+      <h3 class="d-none d-lg-block">Mes dernières participations</h3>
+      {% for key,participation in userParticipations %}
+        {% set modal_id = 'modal_participation_' ~ participation.id %}
+        {% set previous_id = 'modal_participation_' ~ userParticipations[key-1].id %}
+        {% set next_id = 'modal_participation_' ~ userParticipations[key-1].id %}
+        <div class="col-md-4 col-6 py-1 d-none d-lg-block"  data-bs-toggle="modal" data-bs-target="{{ '#' ~modal_id }}">
+            <img src="{{ vich_uploader_asset(participation, 'imageFile') | imagine_filter('my_thumb') }}" class="img-fluid m-auto"></img>
+            {% include "challenge/challenge/_includes/_modal_participation.html.twig" with {'participation': participation, 'modal_id': modal_id, 'previous': previous_id, 'next': next_id }%}
+        </div>
+      {% endfor %}
+      </div>
       {% else %}
       <h1 class="display-4 fw-bold lh-1">Border hero with cropped image and shadows</h1>
       <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
       {% endif %}
     </div>
-    <div class="col-lg-5 offset-lg-1 p-4  overflow-hidden shadow-lg">
+    <div class="col-lg-5 offset-lg-1  overflow-hidden shadow-lg">
         {% if form is defined %}
-        {{form_start(form)}}
-        {{form_row(form.title)}}
-        {{form_row(form.description)}}
-        {{form_row(form.imageFile, {
-            'attr': {
-                'data-controller': 'imageupload',
-                'data-related-img': '#participationImg'
-                },
-                'row_attr': {
-                             'style': 'display: none;'
-                             }
-            })
-        }}
-        <img id="participationImg" class="img-fluid col-12 mt-3" src="/img_placeholder.png" alt="Upload picture CTA">
-        <input type="submit" value="submit" class="btn btn-primary w-100 mt-3">
-        {{form_end(form)}}
-        {% else %}
-        <div style="min-height: 300px;">
-          <div class="row">
+          {{form_start(form)}}
+          {{form_row(form.title)}}
+          {{form_row(form.description)}}
+          {{form_row(form.imageFile, {
+              'attr': {
+                  'data-controller': 'imageupload',
+                  'data-related-img': '#participationImg'
+                  },
+                  'row_attr': {
+                              'style': 'display: none;'
+                              }
+              })
+          }}
+          <img id="participationImg" class="img-fluid col-12 mt-3" src="/img_placeholder.png" alt="Upload picture CTA">
+          <input type="submit" value="submit" class="btn btn-primary w-100 mt-3">
+          {{form_end(form)}}
+          <div class="row d-lg-none g-0 g-lg-4 mt-lg-0 mt-3">
+          <hr/>
+            <h3>Mes dernières participations</h3>
             {% for key,participation in userParticipations %}
-            <div class="col-4">
-              <div style="min-height=10vh;">
-                <img src="{{ vich_uploader_asset(participation, 'imageFile') | imagine_filter('my_thumb') }}" class="img-fluid"></img>
+              {% set modal_id = 'modal_participation_' ~ participation.id %}
+                      {% set previous_id = 'modal_participation_' ~ userParticipations[key-1].id %}
+                  {% set next_id = 'modal_participation_' ~ userParticipations[key-1].id %}
+              <div class="col-md-4 col-6 py-1"  data-bs-toggle="modal" data-bs-target="{{ '#' ~modal_id }}">
+                  <img src="{{ vich_uploader_asset(participation, 'imageFile') | imagine_filter('my_thumb') }}" class="img-fluid m-auto"></img>
+                  {% include "challenge/challenge/_includes/_modal_participation.html.twig" with {'participation': participation, 'modal_id': modal_id, 'previous': previous_id, 'next': next_id  }%}
               </div>
-            </div>
             {% endfor %}
-            </div>
-        </div>
-        {% endif %}
+          </div>
+          {% else %}
+          <div style="min-height: 300px;">
+            <div class="row">
+              {% for key,participation in userParticipations %}
+                {% set modal_id = 'modal_participation_' ~ participation.id %}
+                {% set previous_id = '#modal_participation_' ~ userParticipations[key-1 > 0 ? key-1 : userParticipations|length -1 ].id %}
+                {% set next_id = '#modal_participation_' ~ userParticipations[key+1 > userParticipations|length -1 ? 0 : key+1 ? key+1].id %}
+                <div class="col-md-4 col-6 py-1"  data-bs-toggle="modal" data-bs-target="{{ '#' ~modal_id }}">
+                    <img src="{{ vich_uploader_asset(participation, 'imageFile') | imagine_filter('my_thumb') }}" class="img-fluid m-auto"></img>
+                    {% include "challenge/challenge/_includes/_modal_participation.html.twig" with {'participation': participation, 'modal_id': modal_id, 'previous': previous_id, 'next': next_id  }%}
+                </div>
+              {% endfor %}
+              </div>
+          </div>
+          {% endif %}
       </div>
   </div>
 </div>

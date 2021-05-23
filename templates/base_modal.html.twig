@@ -1,0 +1,19 @@
+<div class="modal fade" id="{% block modal_id %}{% endblock %}" tabindex="-1" aria-labelledby="{% block modal_title_id_reference %}{% endblock %}" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-fullscreen-lg-down">
+    <div class="modal-content bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title" id="{% block modal_title_id %}{% endblock %}">{% block modal_title %}{% endblock %}</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="{{ "app.close"|trans }}"></button>
+      </div>
+      <div class="modal-body">
+        {% block modal_body %}{% endblock %}
+      </div>
+      <div class="modal-footer">
+         {% block footer_button %}
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ "app.close"|trans }}</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+</div>
